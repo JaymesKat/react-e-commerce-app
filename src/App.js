@@ -10,14 +10,6 @@ import SignInAndSignupPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import { auth, createUserProfileDoc } from "./firebase/firebase.utils";
 class App extends Component {
 
-	constructor(){
-		super();
-
-		this.state = {
-			currentUser: null
-		}
-	}
-
 	unsubscribeFromAuth = null;
 
 	componentDidMount(){
@@ -44,7 +36,7 @@ class App extends Component {
   render() {
     return (
 			<div>
-				<Header currentUser={this.state.currentUser} />
+				<Header/>
 				<Switch>
 					<Route exact path='/' component={HomePage} />
 					<Route path='/shop' component={ShopPage} />

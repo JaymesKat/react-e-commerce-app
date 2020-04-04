@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./App.css";
 
@@ -13,12 +13,12 @@ import Header from "./components/header/header.component";
 import SignInAndSignupPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import { checkUserSession } from "./redux/user/user.actions";
 
-const App = ({ checkUserSession }) => {
-	
+const App = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    checkUserSession();
+    dispatch(checkUserSession());
   }, [checkUserSession]);
 
   return (
@@ -45,8 +45,4 @@ const App = ({ checkUserSession }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  checkUserSession: (user) => dispatch(checkUserSession(user)),
-});
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

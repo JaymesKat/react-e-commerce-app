@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/swift.svg";
 
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -15,11 +15,12 @@ import {
 	LogoContainer
 } from "./header.styles";
 
-const Header = ({ dispatch }) => {
+const Header = () => {
 
+	const dispatch = useDispatch();
 	const currentUser = useSelector(selectCurrentUser);
 	const hidden = useSelector(selectCartHidden);
-	
+
 	return (
 		<HeaderContainer>
 			<LogoContainer to='/'>
@@ -31,7 +32,7 @@ const Header = ({ dispatch }) => {
 					CONTACT
 				</OptionLink>
 				{currentUser ? (
-					<OptionLink as='div' onClick={dispatch(signOutStart)}>SIGN OUT</OptionLink>
+					<OptionLink as='div' onClick={() => dispatch(signOutStart())}>SIGN OUT</OptionLink>
 				) : (
 					<OptionLink to='/signin'>SIGN IN</OptionLink>
 				)}
